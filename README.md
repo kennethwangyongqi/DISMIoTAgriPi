@@ -1,4 +1,4 @@
-###### ST0324 Internet of Things CA2 Step-by-step Tutorial sucdk
+###### ST0324 Internet of Things CA2 Step-by-step Tutorial
 
 ###### SCHOOL OF COMPUTING (SOC)
 
