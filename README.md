@@ -31,6 +31,7 @@ The next target audience are crop farmers. It will be an added beneficial for th
 
 ### Hardware checklist
 #### Three DHT11 Temperature and Humidity Sensors
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/dht11sensor.jpg | width=250)
 
 The DHT11 is a low cost digital temperature & humidity sensor that is capable of sensing the surrounding atmosphere using a capacitive humidity sensor and a thermistor. The reading will be signaled out onto the data pin and is fairly simple to use. We will be using one DHT11 sensor on each of the Raspberry Pi as each of the breadboard will be located on a different location. The DHT11 has be added with a 10k ohms resistor to supress the power, or else it will spoil the sensor.
 
