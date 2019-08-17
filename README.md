@@ -44,7 +44,7 @@ There are 4 pins located on the DHT11:
 The fritzing diagram for setup will be the same for the other DHT11 and should look like this:
 
 
-### Two LED 5mm Lights
+#### Two LED 5mm Lights
 
 There will be two different LED lights used to indicate for the RFID sensor entry. Green is for access granted and red is for access denied. 
 
@@ -54,7 +54,7 @@ There are just 2 pins located on the LED:
 
 The fritzing diagram setup should look like this for the greenhouse Raspberry Pi:
 
-### One RFID/ NFC MFRC522 Card Reader Module
+#### One RFID/ NFC MFRC522 Card Reader Module
 
 We will be using RFID card/tags with a RFID/NFC MFRC522 card reader module that is attached to the greenhouse Raspberry Pi to track, identify and manage access control.
 
@@ -74,7 +74,7 @@ RST |	> |	GPIO25 |	Blue
 
 The fritzing diagram setup should look like this:
 
-### Three Light Sensors, with MCP3008 ADC and 10k ohms resistor
+#### Three Light Sensors, with MCP3008 ADC and 10k ohms resistor
 
 Light-Dependant Resistor (LDR) are light sensitive resistors that changes its’ resistance based on how much light they are being exposed to. The more light the LDR receives, the less resistant it becomes. Whereas the darker it becomes, the more resistant it wil be. Since the LDR sensor is an analogue sensor, we will need to supplement it with MCP3008 Analogue Digital Converter to read analogue inputs and convert them into digital signals to the Raspberry Pi. We will need to moderate the flow current by adding a 10k ohms resistor to the LDR sensor.
 
@@ -92,5 +92,78 @@ For the pin number, we will read from left to right on the MCP3008:
 | <p>Pin 8<br>DGND</p> | GND	| Black |
 | <p>Pin 1 (Opposite side)</p> | To LDR	| White |
 
- 
+The fritzing diagram setup should look like this:
 
+
+#### Two Soil Moisture Sensors
+
+The soil moisture sensor is able to detect the amount of moisture present in the soil of the potted plant/farm. It is a low tech sensor that is ideal for monitoring the water level.
+
+We will be connecting a total of 5 jumper wires from the soil sensor to the MH-Sensor-Series Flying-Fish and to the Raspberry Pi.
+
+| Moisture Sensor |	Connect | Flying Fish | Connect |	RPi pin |	Jumper color |
+| :-------: | :------: | :-----: | :--------: | :------: | :---------: |
+| Any pin | > | + | | | Black |
+| Any pin | > | - | | | White |
+| | | VCG | > | 5.0v | Purple |
+| | | GND | > | GND | Grey |
+| | | DO | > | GPIO#23 | Blue |
+
+The fritzing diagram for setup should look like this:
+
+#### Three Buzzers
+
+We will be using active buzzers as they are cheaper and simpler to use. The buzzer is used as an actuator to create alerts by making a buzzing or beeping noise. Resistors is not needed for the buzzer.
+
+There are only 2 pins located on the active buzzer:
+-	VOUT 
+-	GND
+
+Connect the buzzer to the Raspberry Pi as followed:
+
+| PIR pin | RPi pin |	Jumper Color |
+| :------: | :---------: | :--------: |
+| GND | GND | Black |
+| VOUT | GPIO26 | Blue |
+
+The fritzing diagram setup should look like this:
+
+#### Three RPi PiCamera
+
+The Pi Camera is mounted on and connects through a ribbon cable to the Raspberry Pi. We will be using the Pi Camera to capture images on the greenhouse as well as the farms.
+
+#### Three LCD Screen
+We will be using three 16x2 i2c LCD Screens for each Raspberry Pi. The LCD Screens will be used to dictate data readings on the physical screen:
+
+-	Greenhouse – Temperature & Humidity
+-	Farm 1 – Temperature & Humidity
+-	Farm 2 – Temperature & Humidity
+
+Connect both pins on the lcd and the RPi as followed:
+
+| LCD Pin | RPi Pin |	Jumper Color |
+| :------: | :---------: | :--------: |
+| SCL | SCL | White |
+| SDA | SDA | Yellow |
+| GND | GND | Black |
+| VCC | 5V | Red |
+
+The final fritzing diagram setup should look like this:
+
+#### 5v 1-Channel Relay Module
+
+We will be using a 1-Channel Relay Module to control a circuit by a separate low-power signal. A relay is an electrically operated switch and uses an electromagnet to mechanically operate a switch.
+
+It has 3 pins for connecting power and for controlling the relay:
+
+-	GND – Connect to GND on the breadboard
+-	COM – Connect to GPIO#23
+-	VCC – Connect to 5v0 on the breadboard
+
+#### Submersible Water Pump with Tube
+
+This is a low cost, small size Submersible Water Pump Motor which can be operated from a 2.5 ~ 6V power supply. It can take up to 120 liters per hour with very low power consumption. We will connect the piping tube to the motor outlet and submerge it in water. Do take note that dry run may damage the motor due to heating and it will also produce unwanted noise.
+
+*Make sure that the water level is always higher than the motor.* 
+
+The fritzing diagram setup should look like this:
