@@ -22,6 +22,7 @@ my_rpi.configureDrainingFrequency(2)  # Draining: 2 Hz
 my_rpi.configureConnectDisconnectTimeout(10)  # 10 sec
 my_rpi.configureMQTTOperationTimeout(5)  # 5 sec
 
+#control LED through web app
 def LedCallback(client, userdata, message):
     print('led')
     data = json.loads(message.payload)
@@ -32,6 +33,7 @@ def LedCallback(client, userdata, message):
         greenled.off()
         redled.off()
 
+#control buzzer through web app
 def BuzzCallback(client, userdata, message):
     print('buzz')
     data = json.loads(message.payload)

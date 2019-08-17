@@ -25,12 +25,16 @@ my_rpi.configureConnectDisconnectTimeout(10)  # 10 sec
 my_rpi.configureMQTTOperationTimeout(5)  # 5 sec
 my_rpi.connect()
 
+#main
 try:
     while update:
         try:
+            #get humidity, temperature and light values
             humidity, temperature = Adafruit_DHT.read_retry(11, pin)
             light = (1024*(1.0-mcp3008.value))
             light = round(light)
+
+            #setting values as json format to publish to dynamoDB
             message = {}
             message["deviceid"] = "greenhouse_1"
             import datetime as datetime
@@ -44,6 +48,7 @@ try:
             print("Wait 4 secs before getting next temperature and humidity values..")
             sleep(2)
 
+            #display temperature and humidity on LCD
             lcd.text("Temp: "+ str(temperature) + unichr(223) + "C", 1)
             lcd.text("Humidity: "+ str(humidity)+"%", 2)
         except KeyboardInterrupt:

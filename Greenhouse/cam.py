@@ -23,6 +23,7 @@ def takepic():
     from picamera import PiCamera
     camera = PiCamera()
     try:
+        #take picture using picam
         sleep(3)
         import datetime as datetime
         now = datetime.datetime.now()
@@ -33,9 +34,10 @@ def takepic():
         camera.capture(full_path)    
         sleep(3)
         print('done taking photo')
-        # Upload a new file
+        # Upload picture to S3 bucket 
         s3.Object(bucket, filename).put(Body=open(full_path, 'rb'))
         print("File uploaded")
+        #store filename of image in dynamoDB
         message = {}
         message["deviceid"] = "greenhouse_1"
         message["datetime_value"] = now.strftime("%d/%m/%Y, %H:%M:%S")
@@ -49,7 +51,8 @@ def takepic():
         print('closing cam')
         camera.close()
         print('cam closed')
-    
+
+#manually take picture through web app    
 def CamCallback(client, userdata, message):
     print('reach camcallback')
     data = json.loads(message.payload)
