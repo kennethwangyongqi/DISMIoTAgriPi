@@ -36,10 +36,10 @@ The next target audience are crop farmers. It will be an added beneficial for th
 The DHT11 is a low cost digital temperature & humidity sensor that is capable of sensing the surrounding atmosphere using a capacitive humidity sensor and a thermistor. The reading will be signaled out onto the data pin and is fairly simple to use. We will be using one DHT11 sensor on each of the Raspberry Pi as each of the breadboard will be located on a different location. The DHT11 has be added with a 10k ohms resistor to supress the power, or else it will spoil the sensor.
 
 There are 4 pins located on the DHT11:
-•	VCC – connect it to 3v3 power
-•	DATA – connect it to the GPIO value
-•	NC – Stands for No Connection
-•	GND – connect it to the ground
+-	VCC – connect it to 3v3 power
+-	DATA – connect it to the GPIO value
+-	NC – Stands for No Connection
+-	GND – connect it to the ground
 
 The fritzing diagram for setup will be the same for the other DHT11 and should look like this:
 
