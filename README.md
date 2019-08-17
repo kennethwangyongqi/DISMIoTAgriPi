@@ -74,3 +74,15 @@ RST |	> |	GPIO25 |	Blue
 
 The fritzing diagram setup should look like this:
 
+### Three Light Sensors, with MCP3008 ADC and 10k ohms resistor
+
+Light-Dependant Resistor (LDR) are light sensitive resistors that changes its’ resistance based on how much light they are being exposed to. The more light the LDR receives, the less resistant it becomes. Whereas the darker it becomes, the more resistant it wil be. Since the LDR sensor is an analogue sensor, we will need to supplement it with MCP3008 Analogue Digital Converter to read analogue inputs and convert them into digital signals to the Raspberry Pi. We will need to moderate the flow current by adding a 10k ohms resistor to the LDR sensor.
+
+For the pin number, we will read from left to right on the MCP3008:
+
+|MCP3008 | Raspberry Pi |	Jumper Color |
+| ------ | ------------ | ------------ |
+| <p>Pin 1<br>VDD</p> | 3V3	| Orange |
+
+ 
+
