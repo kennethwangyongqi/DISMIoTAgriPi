@@ -1,4 +1,4 @@
-###### ST0324 Internet of Things CA2 Step-by-step Tutorial sucdk
+###### ST0324 Internet of Things CA2 Step-by-step Tutorial
 
 ###### SCHOOL OF COMPUTING (SOC)
 
@@ -42,3 +42,35 @@ There are 4 pins located on the DHT11:
 •	GND – connect it to the ground
 
 The fritzing diagram for setup will be the same for the other DHT11 and should look like this:
+
+
+### Two LED 5mm Lights
+
+There will be two different LED lights used to indicate for the RFID sensor entry. Green is for access granted and red is for access denied. 
+
+There are just 2 pins located on the LED:
+•	Connect the longer leg pin with blue jumper wire to the GPIO value
+•	Connect the shorter leg pin to a 330 ohms resistor and to GND port with black jumper wire
+
+The fritzing diagram setup should look like this for the greenhouse Raspberry Pi:
+
+### One RFID/ NFC MFRC522 Card Reader Module
+
+We will be using RFID card/tags with a RFID/NFC MFRC522 card reader module that is attached to the greenhouse Raspberry Pi to track, identify and manage access control.
+
+There are 9 pins located on the MFRC522 card reader module and we will only be using 7 of them:
+
+| MFRCF522 pin |	Connect |	RPi pin |	Jumper color |
+| ------------ | -------- | ------- | ------------ |
+SDA |	> |	CE0 |	Orange
+SCK |	> |	SCLK |	Orange
+MOSI |	> |	MOSI |	Purple
+MISO |	> |	MISO |	Purple
+IDR | | |			
+GND |	> |	GND |	Black
+RST |	> |	GPIO25 |	Blue
+3.3V |	> |	3.3V |	Red
+5V |			
+
+The fritzing diagram setup should look like this:
+
