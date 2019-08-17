@@ -167,3 +167,36 @@ This is a low cost, small size Submersible Water Pump Motor which can be operate
 *Make sure that the water level is always higher than the motor.* 
 
 The fritzing diagram setup should look like this:
+
+### Hardware setup
+
+| Greenhouse RPi | Farm1 RPi | Farm2 RPi |
+| :----: | :----: | :----: |
+| <p>LCD Screen<br>DHT11 Sensor<br>Light Sensor w/MCP3008 ADC<br>RPi PiCamera<br>Buzzer<br>RFID Sensor<br>RFID cards<br>Green LED<br>Red LED</p> | <p>LCD Screen<br>DHT11 Sensor<br>Light Sensor w/MCP3008 ADC<br>RPi PiCamera<br>Buzzer<br>Soil Moisture Sensor<br>5v Relay Module<br>Submersible Water Pump</p> | <p>LCD Screen<br>DHT11 Sensor<br>Light Sensor w/MCP3008 ADC<br>RPi PiCamera<br>Buzzer<br>Soil Moisture Sensor</p>
+
+#### RPI set-up for Greenhouse RPi
+
+#### RPI set-up for Farm1 RPi
+
+#### RPI set-up for Farm2 RPi
+
+#### Fritzing diagram for Greenhouse RPi
+
+#### Fritzing diagram for Farm1 RPi
+
+#### Fritzing diagram for Farm2 RPi
+
+#### Materials used to set up Greenhouse
+We will be using a couple of low cost materials to build our greenhouse set up. Some of our building materials include:
+
+-	Pots for the plants
+-	Plants of choice
+-	60cm x 40cm styrofoam board to be cut as the walls
+-	30cm x 30cm grass patch
+-	Styrofoam cubes to hold the plant in place
+-	Felt to decorate the walls
+-	Soil or something to fill potted plants with
+
+#### Greenhouse Setup
+
+##
