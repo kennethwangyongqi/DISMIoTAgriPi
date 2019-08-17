@@ -36,6 +36,7 @@ The next target audience are crop farmers. It will be an added beneficial for th
 The DHT11 is a low cost digital temperature & humidity sensor that is capable of sensing the surrounding atmosphere using a capacitive humidity sensor and a thermistor. The reading will be signaled out onto the data pin and is fairly simple to use. We will be using one DHT11 sensor on each of the Raspberry Pi as each of the breadboard will be located on a different location. The DHT11 has be added with a 10k ohms resistor to supress the power, or else it will spoil the sensor.
 
 There are 4 pins located on the DHT11:
+
 -	VCC – connect it to 3v3 power
 -	DATA – connect it to the GPIO value
 -	NC – Stands for No Connection
@@ -48,7 +49,7 @@ The fritzing diagram for setup will be the same for the other DHT11 and should l
 
 There will be two different LED lights used to indicate for the RFID sensor entry. Green is for access granted and red is for access denied. 
 
-There are just 2 pins located on the LED:
+There are just 2 pins located on the LED::
 -	Connect the longer leg pin with blue jumper wire to the GPIO value
 -	Connect the shorter leg pin to a 330 ohms resistor and to GND port with black jumper wire
 
@@ -130,16 +131,22 @@ The fritzing diagram setup should look like this:
 
 #### Three RPi PiCamera
 
-The Pi Camera is mounted on and connects through a ribbon cable to the Raspberry Pi. We will be using the Pi Camera to capture images on the greenhouse as well as the farms.
+The Pi Camera is mounted on and connects through a ribbon cable to the Raspberry Pi. We will be using the Pi Camera to capture images on the greenhouse as well as the farms. 
+
+For the greenhouse RPi, the PiCamera is utilized to see who is at the doorstep when accessing the RFID door.
+
+For the farm 1 and 2 RPi, the PiCamera is utilized and positioned to capture photos of the potted plant/farm.
+
 
 #### Three LCD Screen
 We will be using three 16x2 i2c LCD Screens for each Raspberry Pi. The LCD Screens will be used to dictate data readings on the physical screen:
 
 -	Greenhouse – Temperature & Humidity
--	Farm 1 – Temperature & Humidity
--	Farm 2 – Temperature & Humidity
+-	Farm 1 – Soil moisture & water pump activation
+-	Farm 2 – Soil moisture & AWS SNS alerts
 
-Connect both pins on the lcd and the RPi as followed:
+Connect both pins on the lcd and the RPi as followed: 
+
 
 | LCD Pin | RPi Pin |	Jumper Color |
 | :------: | :---------: | :--------: |
@@ -168,7 +175,7 @@ This is a low cost, small size Submersible Water Pump Motor which can be operate
 
 The fritzing diagram setup should look like this:
 
-### Hardware setup
+## Section 3 Hardware setup
 
 | Greenhouse RPi | Farm1 RPi | Farm2 RPi |
 | :----: | :----: | :----: |
@@ -199,4 +206,70 @@ We will be using a couple of low cost materials to build our greenhouse set up. 
 
 #### Greenhouse Setup
 
-##
+## Section 4 Software requirements
+Below is a list of libraries that will be imported and used for each of the python script:
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"> Greenhouse Raspberry Pi </th>
+    <tr>
+      <th>environment.py</th>
+      <th>rfid.py</th>
+      <th>cam.py</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>rpi_lcd import LCD<br>gpiozero import MCP3008, Buzzer<br>Adafruit_DHT<br>RPi.GPIO as GPIO</td>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>gpiozero import LED, Buzzer<br>MFRC522<br>Signal<br>json</td>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>boto3<br>botocore<br>json<br>json<br>PiCamera<br>datetime</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"> Farm 1 Raspberry Pi </th>
+    <tr>
+      <th>environment.py</th>
+      <th>pump.py</th>
+      <th>cam.py</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>rpi_lcd import LCD<br>gpiozero import MCP3008, Buzzer<br>Adafruit_DHT<br>RPi.GPIO as GPIO</td>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>RPi.GPIO as GPIO<br>datetime as datetime<br>rpi_lcd import LCD<br>json</td>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>boto3<br>botocore<br>json<br>json<br>PiCamera<br>datetime</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"> Farm 2 Raspberry Pi </th>
+    <tr>
+      <th>environment.py</th>
+      <th>rfid.py</th>
+      <th>cam.py</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>rpi_lcd import LCD<br>gpiozero import MCP3008, Buzzer<br>Adafruit_DHT<br>RPi.GPIO as GPIO</td>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>RPi.GPIO as GPIO<br>datetime as datetime<br>rpi_lcd import LCD<br>json</td>
+      <td>sys<br>AWSIoTPythonSDK.MQTTLib, Import AWSIoTMQTTClient<br>time import sleep<br>boto3<br>botocore<br>json<br>json<br>PiCamera<br>datetime</td>
+    </tr>
+  </tbody>
+</table>
+
+
+## Section 5 Register "AgriPi" as a Thing
+## Section 6 Create a S3 Bucket
+## Section 7 DynamoDB setup
+## Section 8 Create SNS
+## Section 9 Hosting of Web Application with AWS EC2
+
