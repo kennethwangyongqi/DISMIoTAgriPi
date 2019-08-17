@@ -61,7 +61,7 @@ We will be using RFID card/tags with a RFID/NFC MFRC522 card reader module that 
 There are 9 pins located on the MFRC522 card reader module and we will only be using 7 of them:
 
 | MFRCF522 pin |	Connect |	RPi pin |	Jumper color |
-| ------------ | -------- | ------- | ------------ |
+| :-------: | :------: | :-----: | :--------: |
 SDA |	> |	CE0 |	Orange
 SCK |	> |	SCLK |	Orange
 MOSI |	> |	MOSI |	Purple
@@ -81,8 +81,16 @@ Light-Dependant Resistor (LDR) are light sensitive resistors that changes its’
 For the pin number, we will read from left to right on the MCP3008:
 
 |MCP3008 | Raspberry Pi |	Jumper Color |
-| ------ | ------------ | ------------ |
+| :------: | :---------: | :--------: |
 | <p>Pin 1<br>VDD</p> | 3V3	| Orange |
+| <p>Pin 2<br>VREF</p> | 3V3	| Orange |
+| <p>Pin 3<br>AGND</p> | GND	| Grey |
+| <p>Pin 4<br>CLK</p> | <p>BCM11<br>SCLK</p>| Yellow |
+| <p>Pin 5<br>DOUT</p> | <p>BCM9<br>MISO</p>	| Blue |
+| <p>Pin 6<br>DIN</p> | <p>BCM10<br>MOSI</p>	| Pink |
+| <p>Pin 7<br>CS/SHDN</p> | <p>BCM18<br>CE0</p>	| Green |
+| <p>Pin 8<br>DGND</p> | GND	| Black |
+| <p>Pin 1 (Opposite side)</p> | To LDR	| White |
 
  
 
