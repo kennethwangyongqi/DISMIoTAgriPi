@@ -49,8 +49,8 @@ The fritzing diagram for setup will be the same for the other DHT11 and should l
 There will be two different LED lights used to indicate for the RFID sensor entry. Green is for access granted and red is for access denied. 
 
 There are just 2 pins located on the LED:
-•	Connect the longer leg pin with blue jumper wire to the GPIO value
-•	Connect the shorter leg pin to a 330 ohms resistor and to GND port with black jumper wire
+-	Connect the longer leg pin with blue jumper wire to the GPIO value
+-	Connect the shorter leg pin to a 330 ohms resistor and to GND port with black jumper wire
 
 The fritzing diagram setup should look like this for the greenhouse Raspberry Pi:
 
