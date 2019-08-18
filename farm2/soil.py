@@ -14,7 +14,7 @@ lcd = LCD()
 soil = Button(24)
 
 #amazonaws host and certs
-host = "a3f69y8dukmi8a-ats.iot.us-east-1.amazonaws.com"
+host = "xxxxxxxxxxxxxxxxx.us-east-1.amazonaws.com"
 rootCAPath = "rootca.pem"
 certificatePath = "certificate.pem.crt"
 privateKeyPath = "private.pem.key"
