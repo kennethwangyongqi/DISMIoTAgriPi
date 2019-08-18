@@ -268,25 +268,28 @@ Below is a list of libraries that will be imported and used for each of the pyth
 
 
 ## Section 5 Register "AgriPi" as a Thing
+
 ### Set up “AgriPi” as a Thing
-1)	Navigate to the AWS console and on the top left panel, click on the Services dropdown to open up the search function. Search for the “IoT Core” service.
+
+1) Navigate to the AWS console and on the top left panel, click on the Services dropdown to open up the search function. Search for the “IoT Core” service.
 
 
-2)	On the left navigation panel, Click on Manage > Things. Next, Click on the “Register a Thing” button to start setting up a “Thing”.
+2) On the left navigation panel, Click on Manage > Things. Next, Click on the “Register a Thing” button to start setting up a “Thing”.
  
 
-3)	Click on create a single thing to start setting a “Thing”.
+3) Click on create a single thing to start setting a “Thing”.
 
  
-4)	Give the device a name, For this we will name it “AgriPi”. Leave the rest of the fields in the creation page as default and click on Next.
-
- 
-
-5)	On the following page, we will generate a X5.09 certificate as well as a public and private key. Choose the “One-click certificate creation (recommended)” option and click on Create certificate. This process will only take 5-10 seconds.
+4) Give the device a name, For this we will name it “AgriPi”. Leave the rest of the fields in the creation page as default and click on Next.
 
  
 
-6)	The following screen should have a total of Four Downloadable links. It consists of:
+5) On the following page, we will generate a X5.09 certificate as well as a public and private key. Choose the “One-click certificate creation (recommended)” option and click on Create certificate. This process will only take 5-10 seconds.
+
+ 
+
+6) The following screen should have a total of Four Downloadable links. It consists of:
+
 -	A certificate
 -	A public key
 -	A private key
@@ -294,11 +297,12 @@ Below is a list of libraries that will be imported and used for each of the pyth
 
  
 
-7)	For the root CA, choose the RSA 2048 bit key: Amazon Root CA 1 option. Make sure to right click and select “save link as”. This will enable the download as a .pem file extension.
+7) For the root CA, choose the RSA 2048 bit key: Amazon Root CA 1 option. Make sure to right click and select “save link as”. This will enable the download as a .pem file extension.
 
  
 
-8)	Create a file directory called “cert”, put all 4 newly downloaded files above into this file directory. Rename all of the file with an easier name to indicate the file type:
+8) Create a file directory called “cert”, put all 4 newly downloaded files above into this file directory. Rename all of the file with an easier name to indicate the file type:
+
 -	84c3062443-certificate.pem.crt -> certificate.pem.crt
 -	84c3062443-public.pem.key -> public.pem.key
 -	84c3062443-private.pem.key -> private.pem.key
@@ -307,53 +311,53 @@ Below is a list of libraries that will be imported and used for each of the pyth
   
 The files should be contained in the “cert” directory and look like this.
 
-9)	Next, click on the “Activate”. A Successfully activated certificate notification will appear and the “Activate” button will turn into “Deactivate”.
+9) Next, click on the “Activate”. A Successfully activated certificate notification will appear and the “Activate” button will turn into “Deactivate”.
 
  
 
-10)	Click on “Done”. After which, the thing will be listed in “Things”.
+10) Click on “Done”. After which, the thing will be listed in “Things”.
 
  
 
-11)	On the left navigation panel, we will proceed to create a secure policy for the AgriPi Thing.
+11) On the left navigation panel, we will proceed to create a secure policy for the AgriPi Thing.
 Click on Secure > Policies > Create a policy.
 
  
 
-12)	Give the new policy a name. For this, we will name it as “AgriPiAllPolicy”.
+12) Give the new policy a name. For this, we will name it as “AgriPiAllPolicy”.
 
  
 
-13)	On Action, type in iot* and on Resource ARN, replace it with a *. Ensure that under “Effect”, tick the Allow checkbox. 
+13) On Action, type in iot* and on Resource ARN, replace it with a *. Ensure that under “Effect”, tick the Allow checkbox. 
 Lastly, select “Create”. 
 
  
 
-14)	A notification will come up saying “ Successfully created a policy”. We will now have a security policy that will allow for access to all IoT Core services.
+14) A notification will come up saying “ Successfully created a policy”. We will now have a security policy that will allow for access to all IoT Core services.
 
  
-
 ### Attach the AgriPi “Thing” and security policy to the certificate
 
-1)	In this portion, we will begin to attach both the AgriPi and security policy to the X.509 certificate located at the “certificates” navigation panel under Secure. 
+1) In this portion, we will begin to attach both the AgriPi and security policy to the X.509 certificate located at the “certificates” navigation panel under Secure. 
 Click on the “…” 
 
  
 
-2)	The following steps below will require to do two things:
+2) The following steps below will require to do two things:
+
 -	Select the “AgriPiAllPolicy” to attach the policy
 -	Select the “AgriPi” to register the Thing
 
  
 
-3)	A notification will mention “Successfully attached policy”.
+3) A notification will mention “Successfully attached policy”.
  
 
-4)	Repeat the steps above and select “Attach thing”.
+4) Repeat the steps above and select “Attach thing”.
 
  
 
-5)	A notification will mention “Successfully attached certificate to thing”.
+5) A notification will mention “Successfully attached certificate to thing”.
 
  
 
@@ -362,42 +366,232 @@ Click on the “…”
 
 In this section,  we will set up a role in order to create rules due to the account being an AWSEducate student type. This account will require extra steps to configure, rather than a paid account which is much more straightforward and does not require more steps. 
 
-1)	Search on the AWS Management Console for “IAM”. Click on the IAM service.
+1) Search on the AWS Management Console for “IAM”. Click on the IAM service.
 
  
 
-2)	On the left navigation panel, the IAM dashboard has a list of features. Click on “Roles”, then click on “Create role”.
+2) On the left navigation panel, the IAM dashboard has a list of features. Click on “Roles”, then click on “Create role”.
 
  
 
-3)	For the next step, select AWS service and scroll down to select the IOT service.
+3) For the next step, select AWS service and scroll down to select the IOT service.
 
  
  
 
-4)	Next, after the services we will select the use case. For this instance, select IoT. Click on Next: Permissions to proceed to the next page.
+4) Next, after the services we will select the use case. For this instance, select IoT. Click on Next: Permissions to proceed to the next page.
 
  
 
-5)	In the following page, click on Next: Tags.
+5) In the following page, click on Next: Tags.
  
  
 
-6)	In the following page, click on Next: Review.
+6) In the following page, click on Next: Review.
 
  
 
-7)	In the following page, give the role a name. For this instance, we will call it “AgriPiRole”. For the description, leave it as it is by default. Lastly, Click on Create role to finish the step.
+7) In the following page, give the role a name. For this instance, we will call it “AgriPiRole”. For the description, leave it as it is by default. Lastly, Click on Create role to finish the step.
 
  
 
-8)	The following page will have a notification mentioning that the new role “AgriPiRole” has been created. This indicates that the creation is successful.
-
- 
+8) The following page will have a notification mentioning that the new role “AgriPiRole” has been created. This indicates that the creation is successful.
 
 
 ## Section 6 Create a S3 Bucket
+
+### Create a Bucket
+
+In this section, we will begin to access AWS management console and search for “S3”. The following steps will explain further on the creation.
+
+ 
+
+1) On the S3 Dashboard, click on “Create Bucket”.
+
+ 
+
+2) Type in a unique name for the bucket. For this instance, we shall name it “agripi”. Choose region as “US East (N. Virginia)” which is us-east-1. After this is done, click on “Create” to create a S3 bucket.
+
+
+ 
+
+3) The newly created bucket should appear at the S3 dashboard.
+
+ 
+
+
+
+### Editing Public Access Settings and Permissions
+
+1) In the S3 dashboard, select the newly created bucket by clicking on the check box and choose  “Edit public access settings”.
+
+ 
+
+2) Untick the check box for “Block all public access” and ensure that none of the public access are blocked. Once this is done, click on “Save” to save changes.
+
+ 
+
+3) Type “confirm” in the text field when prompted for a confirmation and click on “Confirm”.
+
+ 
+
+4) From the S3 dashboard, click on the “agripi” bucket then click on the “Permissions” tab on the following page.
+
+ 
+
+ 
+
+5) Under the “Permissions” tab, select “Bucket Policy” which will display a text area below.
+
+ 
+
+6) In the text area for Bucket Policy, enter the following policy as shown below:
+
+```
+{
+    "Version": "2008-10-17",<br>
+    "Statement": [
+        {
+            "Sid": "AllowPublicRead",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::agripi/*"
+        }
+    ]
+}
+```
+  
+7) When the policy code has been entered, click on “Save”.
+
+ 
+
 ## Section 7 DynamoDB setup
+
+### Create DynamoDB Tables
+In this section, we will begin to access AWS management console and search for “DynamoDB”. The following steps will explain further on the creation.
+
+ 
+
+1) On the DynamoDB Dashboard, click on “Create Table”. Ensure that the Region that the database is configured on is on location as the Thing, else it will not be the same database.
+
+ 
+
+2) Begin creating a table by giving a table name and a primary key. Select add sort key;
+-	Table Name = access_log
+-	Primary key = deviceid
+-	Sort key = datetime_value
+
+ 
+
+3) Click on Create to begin the creation. It will take a few seconds before success.
+
+ 
+
+4) The table will be created and a new table will be registered. 
+
+ 
+
+5) Follow the same steps to create four more tables for:
+-	Table name = greenhouse (This database table is for greenhouse environment sensors)
+-	Table name = farm (This database table is for farm environment sensors)
+-	Table name = pump (This database table is for pump activation)
+-	Table name = imgref (This database table is for picam)
+
+ 
+
+ 
+
+ 
+
+ 
+
+6) Verify that all five database tables have been created.
+
+ 
+
+
+
+### Create AWS IoT Rules
+
+In this section, we will begin by creating an AWS IoT Rule to take information from an incoming MQT message payload and channel the data automatically into the AWS NoSQL DynamoDB database.
+
+1) Navigate to IoT Core >Act and click on Create to start making a rule.
+
+ 
+
+2) Firstly, we will begin by creating a rule for the greenhouse to retrieve the data from the device:
+-	Name -  AccessLogRule
+-	Description - Rule to send the data received from greenhouse to the Access_log table
+
+ 
+
+3) Scroll down to Rule query statement. In the query box, type in: 
+-	select * FROM ‘entry/greenhouse’
+
+ 
+
+4) Next, click on Add action.
+ 
+ 
+
+5) Select:
+-	Split message into multiple Columns of a DynamoDB table (DynamoDBv2)
+
+
+ 
+
+Scroll all the way down and click on “Configure action”.
+ 
+
+6) In the Configure action page, there are 4 steps to perform:
+-	1. Click on the down button
+-	2. Select access_log table
+-	3. Select AgriPiRole
+-	4. Click on Add action
+
+ 
+
+7) Afterwhich, scroll all the way down and click on Create rule to finish up the rule creation. 
+8) The following screen will show a notification which mentions that the rule has been successfully created. The rule that was created earlier will be shown in the card.
+
+ 
+
+9) The following steps will be a repeat of step 1 – 7 to create the database rule. We will be creating one more rule:
+-	EnvironmentRuleForGreenhouse
+
+
+ 
+ 
+ 
+
+A separate rule for the farm environment:
+-	EnvRuleForFarm
+
+ 
+ 
+ 
+
+A separate rule for the pump activation:
+-	PumpRule
+
+ 
+ 
+ 
+
+A separate rule for the Image capture:
+-	ImgRule
+
+ 
+ 
+ 
+
+10) Check and verify that all five rules have been created and enabled.
+
+ 
+
 ## Section 8 Create SNS
 ## Section 9 Hosting of Web Application with AWS EC2
 
