@@ -13,7 +13,7 @@ lcd = LCD()
 update = True
 mcp3008 = MCP3008(channel=0)
 
-host = "a3f69y8dukmi8a-ats.iot.us-east-1.amazonaws.com"
+host = "xxxxxxxxxxxxxxxx.us-east-1.amazonaws.com"
 rootCAPath = "rootca.pem"
 certificatePath = "certificate.pem.crt"
 privateKeyPath = "private.pem.key"
