@@ -15,6 +15,8 @@
 - Section 7 DynamoDB setup
 - Section 8 Create SNS
 - Section 9 Hosting of Web Application with AWS EC2
+- Section 10 Expected outcome
+- Section 11 References
 
 ## Section 1 Overview of AgriPi
 
