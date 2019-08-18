@@ -8,7 +8,7 @@ import MFRC522
 import signal
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
-host = "XXXXXXXXXXXXXXXXXX.us-east-1.amazonaws.com"
+host = "a3f69y8dukmi8a-ats.iot.us-east-1.amazonaws.com"
 rootCAPath = "rootca.pem"
 certificatePath = "certificate.pem.crt"
 privateKeyPath = "private.pem.key"
@@ -22,31 +22,10 @@ my_rpi.configureDrainingFrequency(2)  # Draining: 2 Hz
 my_rpi.configureConnectDisconnectTimeout(10)  # 10 sec
 my_rpi.configureMQTTOperationTimeout(5)  # 5 sec
 
-#control LED through web app
-def LedCallback(client, userdata, message):
-    print('led')
-    data = json.loads(message.payload)
-    if data['status'] == 'On':
-        greenled.on()
-        redled.on()
-    elif data['status'] == 'Off':
-        greenled.off()
-        redled.off()
-
-#control buzzer through web app
-def BuzzCallback(client, userdata, message):
-    print('buzz')
-    data = json.loads(message.payload)
-    if data['status'] == 'On':
-        bz.on()
-    elif data['status'] == 'Off':
-        bz.off()
-        
-   
+ 
 # Connect and subscribe to AWS IoT
 my_rpi.connect()
-my_rpi.subscribe("led/status/greenhouse_1", 1, LedCallback)
-my_rpi.subscribe("buzz/status/greenhouse_1", 1, BuzzCallback)
+
 uid = None 
 continue_reading = True
 greenled = LED(20)

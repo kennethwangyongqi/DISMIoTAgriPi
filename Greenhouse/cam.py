@@ -5,7 +5,7 @@ from time import sleep
 import json
 import sys
 
-host = "XXXXXXXXXXXXXXXXXX.us-east-1.amazonaws.com"
+host = "a3f69y8dukmi8a-ats.iot.us-east-1.amazonaws.com"
 rootCAPath = "rootca.pem"
 certificatePath = "certificate.pem.crt"
 privateKeyPath = "private.pem.key"
@@ -62,9 +62,9 @@ def CamCallback(client, userdata, message):
 my_rpi.connect()
 my_rpi.subscribe("cam/status/greenhouse_1", 1,CamCallback)
 # Create an S3 resource
-s3 = boto3.resource('s3',aws_access_key_id="XXXXXXXXXXXXXXXXXX",
-aws_secret_access_key="XXXXXXXXXXXXXXXXXX",
-aws_session_token="XXXXXXXXXXXXXXXXXX",region_name='us-east-1')
+s3 = boto3.resource('s3',aws_access_key_id="ASIARSCYLZEPPWCUZCPG",
+aws_secret_access_key="kc6sXhduLVsYWteHRrypEaLe+/iqlsSdHDyi5jHw",
+aws_session_token="FQoGZXIvYXdzEOr//////////wEaDO6dA/kJcAHiopN1CiLxBADu3p0o8Dpm3O04zM+ish4HONGyBVmZcDJmVSQmxVf6U/AC+u/K8ZWZgGDoonEXpIBVyxusiA2H7WPEQbdEVbt2GQhvTdhmoCTWzFw526QNoRLnIr2oRayNg6X/KJ2iZhN1Bi6ii69va8aKoFOBpK8dUzlPF8p0IErDTvlLEhL5imOrXikmTRwko2xw+POERlnH9uQs4kvPT9H93sHdWsfytcvFnDHZjEvPV6Hek8xxtdgkzA2cettp2o/pJ//rISJ0fq1eUqy2Ly8cY8yG2AwsFFqKCuLd2SodkQ0ETmbmvALmWpkYczhaQbjvr877KB2UqeEROFXAQnKw/hGnUO61W6JZheuct7MsY/vTmXKSeXV4nwImYJhyC85uTiQ1kBbeKk3hewf7UYgeANUtS1SA5M9mWMbdyfrVXV3FiW037suJY95WPgf7uhn3AxAIYgNTqR3Ac/PoCD4Pdgl5e1jtr3KezBnW/EC5jcAA8HC1wC02y8n4cyzG2/wF+kpJK+Alids+n8/+Qv6kDyOV4E0Rf3C4PGgZLYfxgOlFKbA28MWjxDrO2XmrvxB9JaSm0giJgW4Qs1tS1db/q2Ew74YoCDDv00hbR4jKptsm7fPADy5GY/m6yEr6nd2jVPxAhVB0L2foNrCMmgfWds1KaSSIBhNhR9piRZoVpqLpuC/4zIuzbQFf0OsZ7LM06YGd8YG7XkCZvZ1Spor/R1Q5UOKPHpnco3MbPazxV/64OvuiEK8IvQeYdXETPu287WU3Z9/0PFWz6O1dVyQwcCHuaRL7L2kJ+v6kG3RyiruVSzNQIGm3dve/rOuHBgF6zKnV094o2J7k6gU=",region_name='us-east-1')
 
 # Set the filename and bucket name
 bucket = 'agripibucket' # replace with your own unique bucket name

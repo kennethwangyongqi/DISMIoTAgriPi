@@ -4,13 +4,15 @@ from time import sleep
 from rpi_lcd import LCD
 from gpiozero import MCP3008
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
+from gpiozero import LED
+from gpiozero import Buzzer
 
 pin = 4
 lcd = LCD()
 update = True
 mcp3008 = MCP3008(channel=0)
 
-host = "XXXXXXXXXXXXXXXXXX.us-east-1.amazonaws.com"
+host = "a3f69y8dukmi8a-ats.iot.us-east-1.amazonaws.com"
 rootCAPath = "rootca.pem"
 certificatePath = "certificate.pem.crt"
 privateKeyPath = "private.pem.key"
@@ -24,6 +26,33 @@ my_rpi.configureDrainingFrequency(2)  # Draining: 2 Hz
 my_rpi.configureConnectDisconnectTimeout(10)  # 10 sec
 my_rpi.configureMQTTOperationTimeout(5)  # 5 sec
 my_rpi.connect()
+
+greenled = LED(20)
+redled = LED(21)
+bz = Buzzer(26)
+
+#control LED through web app
+def LedCallback(client, userdata, message):
+    print('led')
+    data = json.loads(message.payload)
+    if data['status'] == 'On':
+        greenled.on()
+        redled.on()
+    elif data['status'] == 'Off':
+        greenled.off()
+        redled.off()
+
+#control buzzer through web app
+def BuzzCallback(client, userdata, message):
+    print('buzz')
+    data = json.loads(message.payload)
+    if data['status'] == 'On':
+        bz.on()
+    elif data['status'] == 'Off':
+        bz.off()      
+
+my_rpi.subscribe("led/status/greenhouse_1", 1, LedCallback)
+my_rpi.subscribe("buzz/status/greenhouse_1", 1, BuzzCallback)
 
 #main
 try:
