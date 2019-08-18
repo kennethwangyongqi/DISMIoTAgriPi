@@ -268,6 +268,134 @@ Below is a list of libraries that will be imported and used for each of the pyth
 
 
 ## Section 5 Register "AgriPi" as a Thing
+### Set up “AgriPi” as a Thing
+1)	Navigate to the AWS console and on the top left panel, click on the Services dropdown to open up the search function. Search for the “IoT Core” service.
+
+
+2)	On the left navigation panel, Click on Manage > Things. Next, Click on the “Register a Thing” button to start setting up a “Thing”.
+ 
+
+3)	Click on create a single thing to start setting a “Thing”.
+
+ 
+4)	Give the device a name, For this we will name it “AgriPi”. Leave the rest of the fields in the creation page as default and click on Next.
+
+ 
+
+5)	On the following page, we will generate a X5.09 certificate as well as a public and private key. Choose the “One-click certificate creation (recommended)” option and click on Create certificate. This process will only take 5-10 seconds.
+
+ 
+
+6)	The following screen should have a total of Four Downloadable links. It consists of:
+-	A certificate
+-	A public key
+-	A private key
+-	A root CA
+
+ 
+
+7)	For the root CA, choose the RSA 2048 bit key: Amazon Root CA 1 option. Make sure to right click and select “save link as”. This will enable the download as a .pem file extension.
+
+ 
+
+8)	Create a file directory called “cert”, put all 4 newly downloaded files above into this file directory. Rename all of the file with an easier name to indicate the file type:
+-	84c3062443-certificate.pem.crt -> certificate.pem.crt
+-	84c3062443-public.pem.key -> public.pem.key
+-	84c3062443-private.pem.key -> private.pem.key
+-	AmazonRootCA1.pem -> rootca.pem
+
+  
+The files should be contained in the “cert” directory and look like this.
+
+9)	Next, click on the “Activate”. A Successfully activated certificate notification will appear and the “Activate” button will turn into “Deactivate”.
+
+ 
+
+10)	Click on “Done”. After which, the thing will be listed in “Things”.
+
+ 
+
+11)	On the left navigation panel, we will proceed to create a secure policy for the AgriPi Thing.
+Click on Secure > Policies > Create a policy.
+
+ 
+
+12)	Give the new policy a name. For this, we will name it as “AgriPiAllPolicy”.
+
+ 
+
+13)	On Action, type in iot* and on Resource ARN, replace it with a *. Ensure that under “Effect”, tick the Allow checkbox. 
+Lastly, select “Create”. 
+
+ 
+
+14)	A notification will come up saying “ Successfully created a policy”. We will now have a security policy that will allow for access to all IoT Core services.
+
+ 
+
+### Attach the AgriPi “Thing” and security policy to the certificate
+
+1)	In this portion, we will begin to attach both the AgriPi and security policy to the X.509 certificate located at the “certificates” navigation panel under Secure. 
+Click on the “…” 
+
+ 
+
+2)	The following steps below will require to do two things:
+-	Select the “AgriPiAllPolicy” to attach the policy
+-	Select the “AgriPi” to register the Thing
+
+ 
+
+3)	A notification will mention “Successfully attached policy”.
+ 
+
+4)	Repeat the steps above and select “Attach thing”.
+
+ 
+
+5)	A notification will mention “Successfully attached certificate to thing”.
+
+ 
+
+
+### Creating an AWS Role 
+
+In this section,  we will set up a role in order to create rules due to the account being an AWSEducate student type. This account will require extra steps to configure, rather than a paid account which is much more straightforward and does not require more steps. 
+
+1)	Search on the AWS Management Console for “IAM”. Click on the IAM service.
+
+ 
+
+2)	On the left navigation panel, the IAM dashboard has a list of features. Click on “Roles”, then click on “Create role”.
+
+ 
+
+3)	For the next step, select AWS service and scroll down to select the IOT service.
+
+ 
+ 
+
+4)	Next, after the services we will select the use case. For this instance, select IoT. Click on Next: Permissions to proceed to the next page.
+
+ 
+
+5)	In the following page, click on Next: Tags.
+ 
+ 
+
+6)	In the following page, click on Next: Review.
+
+ 
+
+7)	In the following page, give the role a name. For this instance, we will call it “AgriPiRole”. For the description, leave it as it is by default. Lastly, Click on Create role to finish the step.
+
+ 
+
+8)	The following page will have a notification mentioning that the new role “AgriPiRole” has been created. This indicates that the creation is successful.
+
+ 
+
+
 ## Section 6 Create a S3 Bucket
 ## Section 7 DynamoDB setup
 ## Section 8 Create SNS
