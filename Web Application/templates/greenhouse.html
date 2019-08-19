@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Agri-Pi Greenhouse Web Application Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+    <!--JS for calling Jquery and Google Charts API -->
+    <style>
+        #chartDiv {
+            width: 100%;
+        }
+    </style>
+    <title>Google Charts with Flask</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="static/vendor/jquery/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart', 'table'] });
+        // Set a callback to run when the Google Visualization API is loaded.
+        function getNewtemperatureData() {
+            jQuery.ajax({
+                url: "/api/getenvironmentdata",
+                type: 'POST',
+                data: { 'deviceid': 'greenhouse_1', 'table': 'greenhouse' },
+                success: function (ndata, textStatus, xhr) {
+                    var chartdata = JSON.parse(ndata.chart_data);
+                    //console.log(chartdata);
+                    rtindex = chartdata.length;
+                    rttemperature = chartdata[rtindex - 1].temperature_value;
+                    rtdatetime = chartdata[rtindex - 1].datetime_value;
+                    document.getElementById("temperature").innerText = rttemperature + "°C";
+                    document.getElementById("temperaturedt").innerText = "As of " + rtdatetime;
+
+                    rthumidity = chartdata[rtindex - 1].humidity_value;
+                    document.getElementById("humidity").innerText = rthumidity + "% Humidity";
+                    document.getElementById("humiditydt").innerText = "As of " + rtdatetime;
+
+                    rtlight = chartdata[rtindex - 1].light_value;
+                    document.getElementById("light").innerText = rtlight;
+                    document.getElementById("lightdt").innerText = "As of " + rtdatetime;
+
+                    tgraphdata = new google.visualization.DataTable();
+                    tgraphdata.addColumn('string', 'Time');
+                    tgraphdata.addColumn('number', 'Temperature');
+
+                    hgraphdata = new google.visualization.DataTable();
+                    hgraphdata.addColumn('string', 'Time');
+                    hgraphdata.addColumn('number', 'Humidity');
+
+                    lgraphdata = new google.visualization.DataTable();
+                    lgraphdata.addColumn('string', 'Time');
+                    lgraphdata.addColumn('number', 'Light');
+
+                    for (var i = 0; i < chartdata.length; i++) {
+                        datetime = chartdata[i].datetime_value;
+                        temperature = parseInt(chartdata[i].temperature_value);
+                        humidity = parseInt(chartdata[i].humidity_value);
+                        light = parseInt(chartdata[i].light_value);
+                        tgraphdata.addRows([[datetime, temperature]]);
+                        hgraphdata.addRows([[datetime, humidity]]);
+                        lgraphdata.addRows([[datetime, light]]);
+                    }
+                    var ttable = new google.visualization.Table(document.getElementById('temperature_table'));
+                    ttable.draw(tgraphdata, { sortColumn: 0, sortAscending: false, width: '100%', height: '100%' });
+
+                    tchart = new google.visualization.LineChart(
+                        document.getElementById('temperature_chart'));
+                    tchart.draw(tgraphdata, {
+                        legend: 'none', vAxis: { baseline: 0 },
+                        colors: ['#A0D100']
+                    });
+
+                    var htable = new google.visualization.Table(document.getElementById('humidity_table'));
+                    htable.draw(hgraphdata, { sortColumn: 0, sortAscending: false, width: '100%', height: '100%' });
+
+                    hchart = new google.visualization.LineChart(
+                        document.getElementById('humidity_chart'));
+                    hchart.draw(hgraphdata, {
+                        legend: 'none', vAxis: { baseline: 0 },
+                        colors: ['#00CAD1']
+                    });
+
+                    var ltable = new google.visualization.Table(document.getElementById('light_table'));
+                    ltable.draw(lgraphdata, { sortColumn: 0, sortAscending: false, width: '100%', height: '100%' });
+
+                    lchart = new google.visualization.LineChart(
+                        document.getElementById('light_chart'));
+                    lchart.draw(lgraphdata, {
+                        legend: 'none', vAxis: { baseline: 0 },
+                        colors: ['#00CAD1']
+                    });
+
+                }//end success
+            });//end ajax
+        } //end getNewData
+
+        function createaccesstable() {
+            jQuery.ajax({
+                url: "/api/getaccessdata",
+                type: 'POST',
+                data: { 'deviceid': 'greenhouse_1', 'table': 'access_log' },
+                success: function (ndata, textStatus, xhr) {
+                    var accessdata = JSON.parse(ndata.access_data);
+                    var table = document.getElementById("accesstable");
+                    for (var i = table.rows.length - 1; i > -1; i--) {
+                        table.deleteRow(i);
+                    }
+                    for (var i = 5; i < 10; i++) {
+                        var row = table.insertRow(0);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        cell1.innerHTML = accessdata[i].datetime_value;
+                        cell2.innerHTML = accessdata[i].card_uid;
+                    }
+                    var header = table.createTHead();
+                    var headerrow = header.insertRow(0);
+                    var headercell1 = headerrow.insertCell(0);
+                    var headercell2 = headerrow.insertCell(1);
+                    headercell1.innerHTML = "Time";
+                    headercell2.innerHTML = "UID";
+                }//end success
+            });//end ajax
+        }
+
+        function getimg() {
+            jQuery.ajax({
+                url: "/api/getlastestimg",
+                type: 'POST',
+                data: { 'deviceid': 'greenhouse_1', 'table': 'imgref' },
+                success: function (ndata, textStatus, xhr) {
+                    var imgdata = JSON.parse(ndata.img_data);
+                    var index = imgdata.length;
+                    document.getElementById('camera--output').setAttribute("src", "https://agripibucket.s3.amazonaws.com/" + imgdata[index - 1].img_name);
+                    document.getElementById("imgdt").innerText = "As of " + imgdata[index - 1].datetime_value;
+                    $("#takepic").html('Success');
+
+
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            getNewtemperatureData();
+            createaccesstable();
+            getimg();
+
+            setInterval(function () {
+                getNewtemperatureData()
+            }, 3000);
+            setInterval(function () {
+                createaccesstable()
+            }, 5000);
+
+            setInterval(function () {
+                getimg()
+            }, 5000);
+        });
+    </script>
+    <script>
+        function ledturnon() {
+            jQuery.ajax({
+                url: "/writeLED/On",
+                type: "POST",
+                data: { 'deviceid': 'greenhouse_1' },
+                success: function (result) {
+                    $("#ledstatus").html(result);
+                }
+            })
+        }
+
+        function ledturnoff() {
+            jQuery.ajax({
+                url: "/writeLED/Off",
+                type: "POST",
+                data: { 'deviceid': 'greenhouse_1' },
+                success: function (result) {
+                    $("#ledstatus").html(result);
+                }
+            })
+        }
+
+        function buzzturnon() {
+            jQuery.ajax({
+                url: "/writebuzz/On",
+                type: "POST",
+                data: { 'deviceid': 'greenhouse_1' },
+                success: function (result) {
+                    $("#buzzstatus").html(result);
+                }
+            })
+        }
+
+        function buzzturnoff() {
+            jQuery.ajax({
+                url: "/writebuzz/Off",
+                type: "POST",
+                data: { 'deviceid': 'greenhouse_1' },
+                success: function (result) {
+                    $("#buzzstatus").html(result);
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $("#ledb1").click(function () {
+                ledturnon();
+            });
+            $("#ledb2").click(function () {
+                ledturnoff();
+            });
+            $("#buzzb1").click(function () {
+                buzzturnon();
+            });
+            $("#buzzb2").click(function () {
+                buzzturnoff();
+            });
+        });
+
+    </script>
+    <script>
+        function picture() {
+            jQuery.ajax({
+                url: "PiCamera/takePic",
+                type: "POST",
+                data: { 'deviceid': 'greenhouse_1' },
+                success: function (result) {
+                    $("#takepic").html('Loading...');
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $("#t1").click(function () {
+                picture();
+            });
+        });
+    </script>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-text mx-3">Greenhouse</div>
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-home"></i>
+                </div>
+
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Raspberry Pi
+            </div>
+            <!-- Nav Item -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/greenhouse">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Green house</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item -->
+            <li class="nav-item">
+                <a class="nav-link" href="/farm1">
+                    <i class="fas fa-fw fa-seedling"></i>
+                    <span>Farm 1</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item -->
+            <li class="nav-item">
+                <a class="nav-link" href="/farm2">
+                    <i class="fas fa-fw fa-seedling"></i>
+                    <span>Farm 2</span></a>
+            </li>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Temperature reading -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Temperature Reading</div>
+                                            <div id="temperature" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                            <div id="temperaturedt"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-temperature-low fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Humidity reading -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Humidity Reading</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            </div>
+                                            <div>
+                                                <h2 id="humidity"></h2>
+                                                <span id="humiditydt"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-tint fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tasks container -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Light Reading</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            </div>
+                                            <div>
+                                                <h2 id="light"></h2>
+                                                <span id="lightdt"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-sun fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tasks container -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div>
+                                            <div class="icon" style="margin-bottom: 10px">
+                                                <img src="static/images/led-light.png" width="50" height="50">
+                                                <h3 id="ledstatus" style="display:inline-block;margin-left: 10px">Off
+                                                </h3>
+                                                <img src="static/images/alarm.png" width="50" height="50"
+                                                    style="margin-left: 30px">
+                                                <h3 id="buzzstatus" style="display:inline-block;margin-left: 10px">
+                                                    Off</h3>
+                                            </div>
+                                            <div class="text">
+                                                <button id="ledb1" type="button" class="btn btn-success"
+                                                    style="width: 50px; height: 25px">
+                                                    On</button>
+                                                <button id="ledb2" type="button" class="btn btn-danger"
+                                                    style="width: 50px; height: 25px">
+                                                    Off</button>
+                                                <button id="buzzb1" type="button" class="btn btn-success"
+                                                    style="width: 50px; height: 25px;margin-left: 30px">
+                                                    On</button>
+                                                <button id="buzzb2" type="button" class="btn btn-danger"
+                                                    style="width: 50px; height: 25px">
+                                                    Off</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Light Row -->
+                    <div class="row">
+                        <!-- Light Chart -->
+                        <div id="lightnav" class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="font-weight-bold text-warning">Light chart</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area" style="height:auto;">
+                                        <div id="light_chart" style="width:100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Camera body -->
+                        <div class="col-xl-4 col-lg-5 mr-auto">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Latest photo update</h6>
+                                    <button id="t1">Take a picture ?</button>
+                                    <div class="col-auto">
+                                        <i class="fas fa-camera fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <img id="camera--output" style="width:100%; height:225px;" alt="not found1">
+                                    <span id="imgdt"></span>
+                                </div>
+                                <div class="mt-4 text-center small">
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-success"></i>status <p id="takepic"></p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Light Table -->
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-7">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="font-weight-bold text-warning">Light table</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <div id="light_table" style="width:100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end of light row-->
+                            <!-- start of access log-->
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Most Recent Room Access</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="accesstable" class="table table-top-campaign"></table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end of access log-->
+                        </div>
+                        <!-- start of temperature row-->
+                        <div class="row">
+                            <!-- Temp Chart -->
+                            <div style="width:100%">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-success">Temperature Graph</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area" style="height:auto;">
+                                            <div id="temperature_chart" style="width:100%"></div>
+                                            <div id="temperature_table" style="width:100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of temperature row-->
+                        <!--start of humidity row-->
+                        <div class="row">
+                            <!-- Hum Chart -->
+                            <div style="width:100%">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">Humidity Graph</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area" style="height:auto;">
+                                            <div id="humidity_chart" style="width:100%"></div>
+                                            <div id="humidity_table" style="width:100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Humidity Table -->
+                        </div>
+                        <!-- end of humidity row-->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Agri-Pi</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>
