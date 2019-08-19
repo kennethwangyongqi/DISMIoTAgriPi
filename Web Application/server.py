@@ -15,9 +15,9 @@ def get_data_from_dynamodb(table,deviceid):
           import boto3
           from boto3.dynamodb.conditions import Key, Attr
           dynamodb = boto3.resource('dynamodb',
-          aws_access_key_id="ASIARSCYLZEPGXCPBNQO",
-aws_secret_access_key="43F0Bav/79lgLF5HKZXq+qG7MzyNCyrp/PFAX08Y",
-aws_session_token="FQoGZXIvYXdzEAAaDFB7HJbW7C5xok9VfyLxBDmD7wtYLcqSZMS6nqK8g2rgUt6eSsMkXGa09rHWrSz0ohR7NiVyZC84qvgDoTIp7lQk0fVlPWzmPfA8biepLCeKGCXu+YPuQonEG2ThMPaTAYqNykKqHabMsZFhLIXzakoj27U5Xe68G42gEe4M+3U75H5YkEM67r/sHdES9t0NA/fFIVfCq5xihAYexSghuzSE59gfVPb7XL2TI3XA1sSHJ1KX5lM2bLqy4MxdniwuGa5LJ8SAl5NQNV64KzXpLhYxlc5QELcpjm9tmsAL/zbufLzxCl84UDCK0kVWQGqq8cgVWGKPQ7W23vS5ym9USpJSW0y9WaPvB+e4kz6LZPE5gZ338I6sBocVsU7pseUQJ74RWzkOMkMOunWSp/dWQfiY8X8E0yMr7ChPcCH5NLT8aj3nD/C3zBrtyhzwMja0XDyP9eZKKoorS7+k91nTCzCUSEkp79InRhXB/TxOtOO4jCygS5fBLxyU0xRN/3nblD0c7vq56swy1uLEbar2lHuSTuAx7gQvTFH/SZ2ojeCwdmGZ5NqQjk9/CiUCiw10JAB6zrNrBWckX7+zjz0YVFyM7LDW8SKU3aWZidnsJ0zZ6pUBxSg0AzOK3LRCrZ0msoPrfK+za33wBHA1tt7kaD4f7lYT0zeNJDxp5aucrnAXJuU19TQzwzk7lDza1XMmgSNeMQYTN83NXoIhIjgvXp+dHIqc8c11A5nmCFvPrXOvCs+vTJdrYKJHh35FpWs5iq+6neXdmliFRGV+wZ7i5oztwaTWcF4KkMp9wIPzwm5Sf8sq9tVpx/0bbnXnpJqyUl69Zj01oQ1Sh0x1HpvVgbEonYjp6gU=",region_name='us-east-1')
+          aws_access_key_id="XXXXXXXXXXXXXXXXXXX",
+aws_secret_access_key="XXXXXXXXXXXXXXXXXXXXXXXXX",
+aws_session_token="XXXXXXXXXXXXXXXXXXXXXXXX",region_name='us-east-1')
           table = dynamodb.Table(table)
           response = table.query(
               KeyConditionExpression=Key('deviceid').eq(deviceid),
@@ -162,7 +162,7 @@ def farm2():
     return render_template('farm2.html')
 
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
-host = "a3f69y8dukmi8a-ats.iot.us-east-1.amazonaws.com"
+host = "XXXXXXXXXXXXXXXXXXXx.us-east-1.amazonaws.com"
 rootCAPath = "rootca.pem"
 certificatePath = "certificate.pem.crt"
 privateKeyPath = "private.pem.key"
