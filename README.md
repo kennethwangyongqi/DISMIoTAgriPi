@@ -197,7 +197,8 @@ The final fritzing diagram setup should look like this:
 
 #### 5v 1-Channel Relay Module
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img20-Relay1.jpg)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img21-Relay2.jpg)
 
 
 We will be using a 1-Channel Relay Module to control a circuit by a separate low-power signal. A relay is an electrically operated switch and uses an electromagnet to mechanically operate a switch.
@@ -210,7 +211,7 @@ It has 3 pins for connecting power and for controlling the relay:
 
 #### Submersible Water Pump with Tube
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img22-WaterPump.jpg)
 
 This is a low cost, small size Submersible Water Pump Motor which can be operated from a 2.5 ~ 6V power supply. It can take up to 120 liters per hour with very low power consumption. We will connect the piping tube to the motor outlet and submerge it in water. Do take note that dry run may damage the motor due to heating and it will also produce unwanted noise.
 
@@ -218,7 +219,7 @@ This is a low cost, small size Submersible Water Pump Motor which can be operate
 
 The fritzing diagram setup should look like this:
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img23-WaterPumpfritz.jpg)
 
 ## Section 3 Hardware setup
 
@@ -228,27 +229,27 @@ The fritzing diagram setup should look like this:
 
 #### RPI set-up for Greenhouse RPi
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img24-GreenhouseSetup.jpg)
 
 #### RPI set-up for Farm1 RPi
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img25-Farm1Setup.jpg)
 
 #### RPI set-up for Farm2 RPi
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img26-Farm2Setup.jpg)
 
 #### Fritzing diagram for Greenhouse RPi
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img27-Greenhousefritz.jpg)
 
 #### Fritzing diagram for Farm1 RPi
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img28-Farm1fritz.jpg)
 
 #### Fritzing diagram for Farm2 RPi
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img29-Farm2fritz.jpg)
 
 #### Materials used to set up Greenhouse
 
@@ -335,40 +336,38 @@ Below is a list of libraries that will be imported and used for each of the pyth
 
 1\) Navigate to the AWS console and on the top left panel, click on the Services dropdown to open up the search function. Search for the “IoT Core” service.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup9.jpg)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup10.jpg)
 
 
 2\) On the left navigation panel, Click on Manage > Things. Next, Click on the “Register a Thing” button to start setting up a “Thing”.
  
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup11.jpg)
 
 3\) Click on create a single thing to start setting a “Thing”.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup12.jpg)
  
 4\) Give the device a name, For this we will name it “AgriPi”. Leave the rest of the fields in the creation page as default and click on Next.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup13.jpg)
 
 5\) On the following page, we will generate a X5.09 certificate as well as a public and private key. Choose the “One-click certificate creation (recommended)” option and click on Create certificate. This process will only take 5-10 seconds.
 
- ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+ ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup14.jpg)
 
 6\) The following screen should have a total of Four Downloadable links. It consists of:
-
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
 
 -	A certificate
 -	A public key
 -	A private key
 -	A root CA
 
- 
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup15.jpg)
 
 7\) For the root CA, choose the RSA 2048 bit key: Amazon Root CA 1 option. Make sure to right click and select “save link as”. This will enable the download as a .pem file extension.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup16.jpg)
 
 8\) Create a file directory called “cert”, put all 4 newly downloaded files above into this file directory. Rename all of the file with an easier name to indicate the file type:
 
@@ -377,48 +376,49 @@ Below is a list of libraries that will be imported and used for each of the pyth
 -	84c3062443-private.pem.key -> private.pem.key
 -	AmazonRootCA1.pem -> rootca.pem
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup17.jpg)
+
 The files should be contained in the “cert” directory and look like this.
 
 9\) Next, click on the “Activate”. A Successfully activated certificate notification will appear and the “Activate” button will turn into “Deactivate”.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup18.jpg)
 
 10\) Click on “Done”. After which, the thing will be listed in “Things”.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup19.jpg)
 
 11\) On the left navigation panel, we will proceed to create a secure policy for the AgriPi Thing.
 Click on Secure > Policies > Create a policy.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/) 
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup20.jpg) 
 
 12\) Give the new policy a name. For this, we will name it as “AgriPiAllPolicy”.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/) 
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup21.jpg) 
 
 13\) On Action, type in iot* and on Resource ARN, replace it with a *. Ensure that under “Effect”, tick the Allow checkbox. 
 Lastly, select “Create”. 
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup22.jpg)
 
 14\) A notification will come up saying “ Successfully created a policy”. We will now have a security policy that will allow for access to all IoT Core services.
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup23.jpg)
 
 ### Attach the AgriPi “Thing” and security policy to the certificate
 
 1\) In this portion, we will begin to attach both the AgriPi and security policy to the X.509 certificate located at the “certificates” navigation panel under Secure. 
 Click on the “…” 
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup24.jpg)
 
 2\) The following steps below will require to do two things:
 
 -	Select the “AgriPiAllPolicy” to attach the policy
 -	Select the “AgriPi” to register the Thing
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup25.jpg)
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
 
 3\) A notification will mention “Successfully attached policy”.
