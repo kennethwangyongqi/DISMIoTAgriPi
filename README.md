@@ -889,6 +889,24 @@ sudo python server.py
 
 ## Section 10 Expected outcome
 
+To test if the program works, run all the python files. server.py will be run on the AWS EC2 side. The following is the link to the video demonstration of what the application should look like.
+
+### Greenhouse RPi
+
+Firstly, Greenhouse should populate the database with environment data (temperature, humidity and light value) constantly and the real-time values will be shown on the LCD while both real-time and historical values will be shown on the web application. Secondly, when an RFID card is detected, it will populate the database with the UID and datetime value. And the green LED will be lit and a short buzz will be heard. If the RFID card is not detected properly, the red LED will be lit and a long buzz will be heard. Thirdly, the PiCamera will take an image of the entire greenhouse every 30 seconds and upload the image to AWS S3 bucket and populate database with device id, datetime value and the filename. The latest image belonging to greenhouse will be displayed on the greenhouse page of the web application. Image can be taken manually using a button on the web application. Lastly, the LEDs and buzzer can be controlled through the web application.
+
+### Farm 1 RPi
+
+Firstly, Farm 1 should populate the database with environment data (temperature, humidity and light value) constantly and the real-time values will be shown on the LCD while both real-time and historical values will be shown on the web application. Secondly, Farm 1 will constantly monitor the moisture level of the soil and pump water automatically when moisture level is considered dry. It also display messages on the LCD regarding the soil moisture. Thirdly, the PiCamera will take an image of the plant every hour and upload the image to AWS S3 bucket and populate database with device id, datetime value and the filename. The latest image belonging to farm 1 will be displayed on the farm 1 page of the web application. Image can be taken manually using a button on the web application. Lastly, the pump can be controlled through the web application.
+
+### Farm 2 RPi
+
+Firstly, Farm 2 should populate the database with environment data (temperature, humidity and light value) constantly and the real-time values will be shown on the LCD while both real-time and historical values will be shown on the web application. Secondly, Farm 2 will constantly monitor the moisture level of the soil and sends an email and SMS notification when moisture level is considered dry. It also display messages on the LCD regarding the soil moisture. Thirdly, the PiCamera will take an image of the plant every hour and upload the image to AWS S3 bucket and populate database with device id, datetime value and the filename. The latest image belonging to farm 2 will be displayed on the farm 2 page of the web application. Image can be taken manually using a button on the web application. Lastly, the buzzer can be controlled through the web application.
+
+### Web Application
+
+Firstly, the web application should be able to be accessed from any device and have a homepage with buttons to redirect users to different pages. Secondly, at the greenhouse page, it will display the real-time and historical values of temperature, humidity and light, the latest image of the greenhouse and the recent card access. It allows users to control the LEDs and buzzer of the greenhouse and take pictures manually. Thirdly, at the farm 1 page, it will display the real-time and historical values of temperature, humidity and light and the latest image of the plant. It allows users to control the pump and take pictures manually. Lastly, at the farm 2 page, it will display the real-time and historical values of temperature, humidity and light, the latest image of the plant. It allows users to control buzzer and take pictures manually. 
+
 ## Section 11 References
 
 2\. Basic Recipes — Gpiozero 1.5.1 Documentation. 2019. 2. Basic Recipes — Gpiozero 1.5.1 Documentation. [ONLINE] Available at: https://gpiozero.readthedocs.io/en/stable/recipes.html. [Accessed 17 August 2019].
