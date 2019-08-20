@@ -34,9 +34,19 @@ We believe that this Agriculture IoT project will benefit the target audience an
 
 #### Final web application design
 
+##### AgriPi homepage
+
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappindex.png)
+
+##### Greenhouse dashboard
+
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappgreenhouse.png)
+
+##### Farm 1 dashboard
+
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappfarm1.png)
+
+##### Farm 2 dashboard
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappfarm2.png)
 
 #### System Architecture
