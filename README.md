@@ -32,6 +32,17 @@ We believe that this Agriculture IoT project will benefit the target audience an
 
 ### How does the web application look like?
 
+#### Final web application design
+
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappindex.png)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappgreenhouse.png)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappfarm1.png)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/webappfarm2.png)
+
+#### System Architecture
+
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/sysarch.png)
+
 ## Section 2 Hardware requirements
 
 ### Hardware checklist
