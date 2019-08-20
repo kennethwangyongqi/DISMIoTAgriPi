@@ -347,7 +347,70 @@ Below is a list of libraries that will be imported and used for each of the pyth
   </tbody>
 </table>
 
-## Section 
+## Section 5 Software requirements
+
+### Software setup requirements
+1\) To deploy the web application, the Flask and gevent libraries need to be installed on the EC2 instance. With reference to IOT practical 3, section 6, install the libraries using the commands below:
+
+Install Flask (http://flask.pocoo.org/)
+``` sudo pip install flask ```
+Install gevent (http://www.gevent.org)
+``` sudo pip install gevent ```
+
+2\) To implement the Pi Camera, the camera has to be enabled inside the raspberry pi configuration. With reference to IOT practical 4, section 6:
+
+  - Open the Raspberry Pi Configuration Tool from the main menu:
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup1.jpg)
+
+  - Ensure the camera software is enabled. If it's not enabled, enable it and reboot the RPi to begin.
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup2.jpg)
+
+  - To implement the LCD screen, the rpi_lcd library need to be installed. With reference to IOT practical 4 additional, section 4, install the rpi_lcd library using the command below:
+  ``` sudo pip install rpi-lcd ```
+
+
+  - To implement RFID, there are configuration and libraries to be added. With reference to IOT practical 5 additional, section 4, if you are using  the ST0324 IoT Raspbian image, the following configuration have already been done and you do not need to do this step. However, if you are using a fresh image, you would need to the following steps.
+  ``` sudo rasp-config ```
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup3.jpg)
+
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup4.jpg)
+
+\<\< Enable device tree in boot.txt\>\>
+Modify the /boot/config.txt to enable SPI.
+``` sudo nano /boot/config.txt ```
+Ensure these lines are included in config.txt.
+``` device_tree_param=spi=on
+dtoverlay=spi-bcm2835 ```
+
+\<\< Install Python-dev \>\>
+Make sure there is an active Internet connection as the follow commands require Internet access.
+Install the Python development libraries.
+``` sudo apt-get install python-dev ```
+
+\<\< Install SPI-Py Library \>\>
+Set up the SPI Python libraries since the card reader uses the SPI interface.
+``` cd ~
+git clone https://github.com/lthiery/SPI-Py.git
+cd ~/SPI-Py
+sudo python setup.py install
+ ```
+ 
+Install the AWS Command-Line Interface Client, if it is installed and not updated, add “- -“update at the end of the command.
+ ``` sudo pip install awscli --update ```
+ 
+ Access the AWS Educate Account, Sign in and click on “Account Details” to get the AWS credentials.
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup5.jpg)
+
+Click on the Show button and copy the AWS CLI code that is shown onto a notepad.
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup6.jpg)
+
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup7.jpg)
+
+Back to the RPi, open a new terminal and type in:
+``` sudo nano ~/.aws/credentials ```
+
+Paste the previously copied AWS CLI code into the nano editor, overwrite and save.
+![Alt text] (https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup8.jpg)
 
 
 ## Section 6 Register "AgriPi" as a Thing
