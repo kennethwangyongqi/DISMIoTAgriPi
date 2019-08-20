@@ -29,6 +29,7 @@ We believe that this Agriculture IoT project will benefit the target audience an
 
 
 ### How does the final RPI set-up looks like?
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img-FinalAgriPiSetup.jpg)
 
 ### How does the web application look like?
 
