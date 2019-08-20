@@ -985,6 +985,7 @@ sudo python server.py
 ## Section 11 Expected outcome
 
 To test if the program works, run all the python files. server.py will be run on the AWS EC2 side. The following is the link to the video demonstration of what the application should look like.
+https://youtu.be/vMMQTLYK6Q8
 
 ### Greenhouse RPi
 
