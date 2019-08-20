@@ -274,7 +274,7 @@ The fritzing diagram setup should look like this:
 
 #### Materials used to set up Greenhouse
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img30-hardwaresetup)
 
 We will be using a couple of low cost materials to build our greenhouse set up. Some of our building materials include:
 
@@ -288,7 +288,7 @@ We will be using a couple of low cost materials to build our greenhouse set up. 
 
 #### Greenhouse Setup
 
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup31-HardwareSetup)
 
 ## Section 4 Software requirements
 Below is a list of libraries that will be imported and used for each of the python script:
