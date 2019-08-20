@@ -440,7 +440,7 @@ Click on the “…”
 -	Select the “AgriPi” to register the Thing
 
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup25.jpg)
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup25.jpg)
+![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup26.jpg)
 
 3\) A notification will mention “Successfully attached policy”.
  
