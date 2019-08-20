@@ -476,7 +476,7 @@ In this section,  we will set up a role in order to create rules due to the acco
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup34.jpg) 
 
 5\) In the following page, click on Next: Tags.
- 
+
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup35.jpg) 
 
 6\) In the following page, click on Next: Review.
