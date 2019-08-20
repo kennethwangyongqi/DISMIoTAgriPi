@@ -347,8 +347,10 @@ Below is a list of libraries that will be imported and used for each of the pyth
   </tbody>
 </table>
 
+## Section 
 
-## Section 5 Register "AgriPi" as a Thing
+
+## Section 6 Register "AgriPi" as a Thing
 
 ### Set up “AgriPi” as a Thing
 
@@ -488,7 +490,7 @@ In this section,  we will set up a role in order to create rules due to the acco
 
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup38.jpg)
 
-## Section 6 Create a S3 Bucket
+## Section 8 Create a S3 Bucket
 
 ### Create a Bucket
 
@@ -554,7 +556,7 @@ In this section, we will begin to access AWS management console and search for �
 
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup49.jpg) 
 
-## Section 7 DynamoDB setup
+## Section 8 DynamoDB setup
 
 ### Create DynamoDB Tables
 In this section, we will begin to access AWS management console and search for “DynamoDB”. The following steps will explain further on the creation.
@@ -676,7 +678,7 @@ A separate rule for the Image capture:
 
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup80.jpg) 
 
-## Section 8 Create SNS
+## Section 9 Create SNS
 
 ### Create AWS SNS Topic
 
@@ -760,7 +762,7 @@ In this section, we will setup alerts sent whenever IoT data is published.
 
 ![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/setup98.jpg)  
 
-## Section 9 Hosting of Web Application with AWS EC2
+## Section 10 Hosting of Web Application with AWS EC2
 We will use AWS EC2 cloud service to hose the AgriPi as a web application. The following instruction will guide you on how to create, connect, and host the web application on the EC2 instance.
 
 ### Create EC2 Instance
@@ -905,7 +907,7 @@ sudo python server.py
 ```
 4\)	The web application will now be running live and hosted on AWS EC2. Navigate to the IP address indicated in EC2 instance to launch the web application interface.
 
-## Section 10 Expected outcome
+## Section 11 Expected outcome
 
 To test if the program works, run all the python files. server.py will be run on the AWS EC2 side. The following is the link to the video demonstration of what the application should look like.
 
@@ -925,7 +927,7 @@ Firstly, Farm 2 should populate the database with environment data (temperature,
 
 Firstly, the web application should be able to be accessed from any device and have a homepage with buttons to redirect users to different pages. Secondly, at the greenhouse page, it will display the real-time and historical values of temperature, humidity and light, the latest image of the greenhouse and the recent card access. It allows users to control the LEDs and buzzer of the greenhouse and take pictures manually. Thirdly, at the farm 1 page, it will display the real-time and historical values of temperature, humidity and light and the latest image of the plant. It allows users to control the pump and take pictures manually. Lastly, at the farm 2 page, it will display the real-time and historical values of temperature, humidity and light, the latest image of the plant. It allows users to control buzzer and take pictures manually. 
 
-## Section 11 References
+## Section 12 References
 
 2\. Basic Recipes — Gpiozero 1.5.1 Documentation. 2019. 2. Basic Recipes — Gpiozero 1.5.1 Documentation. [ONLINE] Available at: https://gpiozero.readthedocs.io/en/stable/recipes.html. [Accessed 17 August 2019].
 
