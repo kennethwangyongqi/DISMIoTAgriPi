@@ -286,10 +286,6 @@ We will be using a couple of low cost materials to build our greenhouse set up. 
 -	Felt to decorate the walls
 -	Soil or something to fill potted plants with
 
-#### Greenhouse Setup
-
-![Alt text](https://github.com/kennethwangyongqi/DISMIoTAgriPi/blob/master/README%20images/img31HardwareSetup.jpg)
-
 ## Section 4 Software requirements
 Below is a list of libraries that will be imported and used for each of the python script:
 
