@@ -10,13 +10,14 @@
 - Section 2 Hardware requirements
 - Section 3 Hardware setup
 - Section 4 Software requirements
-- Section 5 Register "AgriPi" as a Thing
-- Section 6 Create a S3 Bucket
-- Section 7 DynamoDB setup
-- Section 8 Create SNS
-- Section 9 Hosting of Web Application with AWS EC2
-- Section 10 Expected outcome
-- Section 11 References
+- Section 5 Software setup requirements
+- Section 6 Register "AgriPi" as a Thing
+- Section 7 Create a S3 Bucket
+- Section 8 DynamoDB setup
+- Section 9 Create SNS
+- Section 10 Hosting of Web Application with AWS EC2
+- Section 11 Expected outcome
+- Section 12 References
 
 ## Section 1 Overview of AgriPi
 
@@ -347,9 +348,8 @@ Below is a list of libraries that will be imported and used for each of the pyth
   </tbody>
 </table>
 
-## Section 5 Software requirements
-
-### Software setup requirements
+## Section 5 Software setup requirements
+ 
 1\) To deploy the web application, the Flask and gevent libraries need to be installed on the EC2 instance. With reference to IOT practical 3, section 6, install the libraries using the commands below:
 
 Install Flask (http://flask.pocoo.org/)
@@ -381,8 +381,11 @@ Install gevent (http://www.gevent.org)
 
 \<\< Enable device tree in boot.txt\>\>
 Modify the /boot/config.txt to enable SPI.
+
 ``` sudo nano /boot/config.txt ```
+
 Ensure these lines are included in config.txt.
+
 ``` device_tree_param=spi=on
 dtoverlay=spi-bcm2835 
 ```
@@ -397,8 +400,9 @@ Set up the SPI Python libraries since the card reader uses the SPI interface.
 ``` cd ~
 git clone https://github.com/lthiery/SPI-Py.git
 cd ~/SPI-Py
-sudo python setup.py install
- ```
+sudo python setup.py install 
+```
+
  
 Install the AWS Command-Line Interface Client, if it is installed and not updated, add “- -“update at the end of the command.
  ``` sudo pip install awscli --update ```
